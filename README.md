@@ -27,7 +27,7 @@ composer require ap-lib/caster
 
 AP\Caster is built around a single interface: [`CasterInterface`](src/CasterInterface.php), which defines the contract for all casters.
 
-By default, all casting-related errors extend [`CastError`](src/Error/CastError.php), ensuring consistent error handling across different casters.
+By default, all casting-related errors extend [`AP\ErrorNode\Error`](https://github.com/ap-lib/error-node/blob/main/src/Error.php), ensuring consistent error handling across different casters.
 
 ## Getting started
 

@@ -2,8 +2,8 @@
 
 namespace AP\Caster;
 
-use AP\Caster\Error\CastError;
 use AP\Context\Context;
+use AP\ErrorNode\Error;
 
 /**
  * Handles adaptive casting of scalar values to the expected type
@@ -14,7 +14,7 @@ use AP\Context\Context;
  * - Converts `0` and `1` to `bool`
  * - Returns `true` if the value is successfully cast
  * - Returns `false` to indicate that casting should be skipped
- * - Never returns an array of errors: `array<CastError>`
+ * - Never returns an array of errors: `array<Error>`
  */
 class AdaptiveScalarCaster implements CasterInterface
 {
@@ -31,7 +31,7 @@ class AdaptiveScalarCaster implements CasterInterface
      * @param string $expected The expected final type, see: `get_debug_type()`
      * @param mixed $el Reference to the value being cast
      * @param ?Context $context Context object providing metadata for casting
-     * @return bool|array<CastError> `true` if successfully cast, `false` to skip
+     * @return bool|array<Error> `true` if successfully cast, `false` to skip
      */
     public function cast(
         string   $expected,

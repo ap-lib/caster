@@ -2,9 +2,9 @@
 
 namespace AP\Caster;
 
-use AP\Caster\Error\CastError;
 use AP\Caster\Error\UnexpectedType;
 use AP\Context\Context;
+use AP\ErrorNode\Error;
 use Throwable;
 
 /**
@@ -46,7 +46,7 @@ class EnumCaster implements CasterInterface
      * @param string $expected The expected final type, see: `get_debug_type()`
      * @param mixed $el Reference to the value being cast
      * @param ?Context $context Context object providing metadata for casting
-     * @return bool|array<CastError> `true` if successfully cast, `false` to skip, non-empty array if casting fails
+     * @return bool|array<Error> `true` if successfully cast, `false` to skip, non-empty array if casting fails
      */
     public function cast(
         string   $expected,

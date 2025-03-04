@@ -2,14 +2,16 @@
 
 namespace AP\Caster\Error;
 
+use AP\ErrorNode\Error;
+
 /**
  * Exception thrown when a value's type does not match the expected type during casting operations
  *
  * This exception:
- * - Extends the CastError base class
+ * - Extends the AP\ErrorNode\Error base class
  * - Indicates that a value of an unexpected type was encountered
  */
-class UnexpectedType extends CastError
+class UnexpectedType extends Error
 {
     /**
      * @param string $expected The expected data type

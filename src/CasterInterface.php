@@ -2,8 +2,8 @@
 
 namespace AP\Caster;
 
-use AP\Caster\Error\CastError;
 use AP\Context\Context;
+use AP\ErrorNode\Error;
 use Throwable;
 
 /**
@@ -21,13 +21,13 @@ interface CasterInterface
      * Implementations should:
      *  - Return `false` to skip casting.
      *  - Return `true` if casting was successful.
-     *  - Return a non-empty array of `CastError` instances if casting failed.
+     *  - Return a non-empty array of `AP\ErrorNode\Error` instances if casting failed.
      *
      * @param string $expected The expected final type, see: `get_debug_type()`
      * @param mixed    &$el The value to be cast, passed by reference
      * @param ?Context $context Context object providing metadata and settings for casting
      *
-     * @return bool|array<CastError> `false` to skip, `true` if successfully casted,
+     * @return bool|array<Error> `false` to skip, `true` if successfully casted,
      *                               or a non-empty array of errors if casting failed.
      * @throws Throwable If a fatal error occurs, that's unrelated to input validation.
      */

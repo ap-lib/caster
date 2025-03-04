@@ -2,9 +2,9 @@
 
 namespace AP\Caster;
 
-use AP\Caster\Error\CastError;
 use AP\Caster\Error\UnexpectedType;
 use AP\Context\Context;
+use AP\ErrorNode\Error;
 use Throwable;
 use UnexpectedValueException;
 
@@ -14,7 +14,7 @@ use UnexpectedValueException;
  * This caster:
  * - Approves values that already match the expected type
  * - Delegates casting to a list of additional casters if a direct match isn't found
- * - Always returns either `true`: successfully cast or a non-empty array of `CastError` instances.
+ * - Always returns either `true`: successfully cast or a non-empty array of `AP\ErrorNode\Error` instances.
  * - Never returns `false` skipping isn't allowed
  */
 readonly class PrimaryCaster implements CasterInterface
@@ -53,7 +53,7 @@ readonly class PrimaryCaster implements CasterInterface
      * @param mixed   &$el Reference to the original data, which may be modified but only if casting succeeds
      * @param ?Context $context Context object providing metadata and settings for casting
      *
-     * @return true|array<CastError> `true` if successfully cast, or a **non-empty** array of errors if casting fails
+     * @return true|array<Error> `true` if successfully cast, or a **non-empty** array of errors if casting fails
      * @throws Throwable If a fatal error occurs, that's unrelated to input data validation
      */
     public function cast(
