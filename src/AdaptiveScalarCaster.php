@@ -59,7 +59,7 @@ class AdaptiveScalarCaster implements CasterInterface
                 }
                 break;
             case "bool":
-                if ($el === 0 || $el === 1) {
+                if ($el === 0 || $el === 1 || $el === '1' || $el === '0') {
                     $el = (bool)$el;
                     return true;
                 }
