@@ -74,7 +74,7 @@ class EnumCaster implements CasterInterface
         }
         $allowed_values = [];
         foreach ($expected::cases() as $case) {
-            $allowed_values[] = $case->value;
+            $allowed_values[] = var_export($case->value, true);
         }
         return [
             new Error("allowed values: " . implode(", ", $allowed_values))
