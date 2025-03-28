@@ -2,7 +2,6 @@
 
 namespace AP\Caster;
 
-use AP\Caster\Error\UnexpectedType;
 use AP\Context\Context;
 use AP\ErrorNode\Error;
 use Throwable;
@@ -63,21 +62,22 @@ class EnumCaster implements CasterInterface
         }
 
         $actual = get_debug_type($el);
-        if (
-            isset(self::ALLOWED_FOR_ENUM_HASHMAP[$actual])
-            && method_exists($expected, "from")
-        ) {
+        if (isset(self::ALLOWED_FOR_ENUM_HASHMAP[$actual])) {
+            if (!method_exists($expected, "from")) {
+                return false;
+            }
             try {
                 $el = $expected::from($el);
                 return true;
             } catch (Throwable) {
             }
         }
+        $allowed_values = [];
+        foreach ($expected::cases() as $case) {
+            $allowed_values[] = $case->value;
+        }
         return [
-            new UnexpectedType(
-                $expected,
-                $actual
-            )
+            new Error("allowed values: " . implode(", ", $allowed_values))
         ];
     }
 }
