@@ -57,6 +57,10 @@ class AdaptiveScalarCaster implements CasterInterface
                     $el = (string)$el;
                     return true;
                 }
+                if (is_object($el) && method_exists($el, '__toString')) {
+                    $el = (string)$el;
+                    return true;
+                }
                 break;
             case "bool":
                 if ($el === 0 || $el === 1 || $el === '1' || $el === '0') {
