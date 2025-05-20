@@ -70,6 +70,13 @@ class EnumCaster implements CasterInterface
                 $el = $expected::from($el);
                 return true;
             } catch (Throwable) {
+                if(is_string($el) && is_numeric($el)){
+                    try {
+                        $el = $expected::from((int)$el);
+                        return true;
+                    } catch (Throwable) {
+                    }
+                }
             }
         }
         $allowed_values = [];
